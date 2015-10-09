@@ -7,9 +7,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
 	<p>
+
 	Filter By Blood Type
 		<select name="bloodType">
 		  <option value="All">All</option>
@@ -23,6 +25,7 @@
 		  <option value="on">O-</option>
 		  
 		</select>
+
 	</p>
 	<div id="map" style="width:1200px; height: 800px"></div>
 
