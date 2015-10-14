@@ -1,30 +1,72 @@
 
-<?
-if( $_POST )
-{
+<?php
+
+ include('dbconnect.php');
+//if( $_POST )
+//{
 
 
-  //mysql_select_db("inmoti6_mysite", $con);	
-  $users_name = $_POST['name'];
-  $users_email = $_POST['email'];
-  $users_address = $_POST['address'];
-  $users_phone = $_POST['phone'];
-  $users_UserName = $_POST['username'];  
-  $users_password = $_POST['password'];
-  $users_type = $_POST['type'];
 
-  /*$users_name = mysql_real_escape_string($users_name);
-  $users_email = mysql_real_escape_string($users_email);
-  $users_website = mysql_real_escape_string($users_website);
-  $users_comment = mysql_real_escape_string($users_comment);*/
-  $query = "
-  INSERT INTO `Sanguine`.`UserDetail` (`Name`, `Address`, `PhoneNumber`, `Email`,
-        `UserName`) VALUES ('$users_name',
-        '$users_address', '$users_phone', '$users_email',
-        '$users_UserName');";		
-  mssql_query($query);
-  echo "<h2>Thank you for your Comment!</h2>";
+  /*$users_email = $_POST['blah'];
+  $users_address = $_POST['LOL'];
+  $users_phone = $_POST['YOLO'];
+  $users_UserName = $_POST['SWAG'];  
+  $users_password = $_POST['PASS'];
+  $users_type = $_POST['1'];
+  $users_name = $_POST['foofighters'];
+  $users_Latitude=$_POST['Latitude'];
+  $users_Longitude=$_POST['Longitude'];
+  $users_LastUpdatedOn=$_POST['LastUpdatedOn'];*/
+  $users_name = 'foofighters';
+  $users_email = 'blah';
+  $users_address ='LOL';
+  $users_phone = 'YOLO';
+  $users_UserName = 'SWAG';  
+  $users_password = 'PASS';
+  $users_type = '1';
+  $users_Latitude='0';
+  $users_Longitude='0';
+  $users_LastUpdatedOn='10/14/2015 11:22 AM';
 
-  mysql_close($con);
-}
+
+	$query1="INSERT INTO [User] (UserName,Password,UserTypeId) VALUES (?,?,?)";
+    $param1= array($users_UserName,$users_password,$users_type);
+	//echo $query1;
+	$sql=sqlsrv_query($conn, $query1, $param1);
+	if( !$sql )
+	{
+		echo "User already exists\n";
+		
+	}
+	else
+	{
+		$query = "INSERT INTO [UserDetail]  (Name, Address, PhoneNumber, Email, UserName) VALUES (?,?,?,?,?) ";
+		$params = array($users_name, $users_address, $users_phone, $users_email, $users_UserName);
+	
+		$sql=sqlsrv_query($conn, $query, $params);
+		if( $sql )
+			{
+				echo "Row successfully inserted.\n";
+				$query2="INSERT INTO [location] (UserName,Latitude,Longitude,LastUpdatedOn) VALUES (?,?,?,?)";
+				$param2= array($users_UserName,$users_Latitude,$users_Longitude,$users_LastUpdatedOn);
+				$sql=sqlsrv_query($conn, $query2, $param2);
+				if( !$sql )
+					{
+						echo "Failed\n";
+						
+					}
+				
+				
+			}
+		else
+			{
+				echo "Row insertion failed.\n";
+				die( print_r( sqlsrv_errors(), true));
+			}
+	}
+	
+    sqlsrv_free_stmt( $query);
+	sqlsrv_close( $conn);
+
+//}
 ?>
