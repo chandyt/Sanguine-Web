@@ -1,11 +1,12 @@
 body {
-	background-color: #f4f4f4;
+	background-color: #272b30;
 	color: #5a5656;
 	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 	font-size: 16px;
 	line-height: 1.5em;
 	}
 a 	{ text-decoration: none; }
+
 h1 	{ font-size: 1em; }
 h1, p {
 	margin-bottom: 10px;
@@ -14,13 +15,25 @@ strong {
 	font-weight: bold;
 }
 	.uppercase { text-transform: uppercase; }
+	.navhead {
+	font-size : 30px;
+	color : #8A0000;
+
+}
+/*---------------logo -----------*/
+#logo { margin :50px 545px auto;
+
+
+ }
+
 
 /* ---------- LOGIN ---------- */
 #login {
-	margin: 50px auto;
+	margin: 30px auto;
 	width: 300px;
 }
-form fieldset input[type="text"], input[type="password"] {
+
+form fieldset input[type="email"], input[type="password"] {
 	background-color: #e5e5e5;
 	border: none;
 	border-radius: 3px;
@@ -32,7 +45,7 @@ form fieldset input[type="text"], input[type="password"] {
 	height: 50px;
 	outline: none;
 	padding: 0px 10px;
-	width: 280px;
+	width: 300px;
 	-webkit-appearance:none;
 }
 form fieldset input[type="submit"] {
@@ -46,6 +59,7 @@ form fieldset input[type="submit"] {
 	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 	height: 50px;
 	text-transform: uppercase;
+	padding: 0px 10px;
 	width: 300px;
 	-webkit-appearance:none;
 }
