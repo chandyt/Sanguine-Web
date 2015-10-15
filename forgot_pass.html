@@ -1,34 +1,85 @@
-<html lang ="en">
-	<head>
-		<meta charset="utf-8">
-		<title> Forget Password </title>
-		<link href="css/bootstrap.css" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="css/styles.css">
-		<link rel="shortcut icon" href="../../assets/ico/favicon.ico">
-	</head>
-	<body>
-		<div id="logo">
-			 <img src="logo.png" alt="logo" width ="300"/>
-		</div>
-		<div id="login" class ="navbar-collapse collapse">
-				
-					<form action="javascript:void(0);" method="get">
-		<fieldset>
-		<p><input type="email" required value="type email address" onBlur="if(this.value=='')this.value='type email address'" onFocus="if(this.value=='type email address')this.value='' "></p>
-		<p><input type="email" required value="confirm email address" onBlur="if(this.value=='')this.value='confirm email address'" onFocus="if(this.value=='confirm email address')this.value='' "></p>
-				<p><input type="submit" value="Submit"></p>
-		</fieldset>
-					</form>
-		</div> <!-- end login -->
-			<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      			<h1 style = "text-align: left " class="navhead"><span> Sanguine </span></h1>
-	    	</div>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+    <title>Sanguine</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!--<link href="jumbotron.css" rel="stylesheet">-->
+  </head>
+
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+
         </div>
+          </button>
+          <a class="navbar-brand" href="index.html"></a>
+      </div>
     </div>
+	
+	
+	
 
-
-
-    <div class="container">
+	
+	 <div class="jumbotron">
+      <div class="container">
+		<div class = "row">
+		<div class="col-md-12">
+		<h1 style = "text-align: center">Welcome to Sanguine</h1>
+		</div>
+        </div>
+		</div>
+	  </div>
+    </div>
+	
+<div class="btn-group btn-group-justified">
+  <a class="btn btn-default" href="user_login.html">Home</a>
+  <a class="btn btn-default" href="new_user.php">Register</a>
+  <a class="btn btn-default" href="maps.php">Send Blood Request</a>
+  <a class="btn btn-default" href="#">About Us</a>
+</div>
+	
+	<div class="row">
+	<div class="col-lg-12">
+	<form class="form-horizontal">
+  <fieldset>
+  <div class = "well col-lg-12">
+    <legend style="padding-left:80px">Enter your email address</legend>
+    <div class="form-group">
+      <label for="inputEmail" class="col-lg-2 control-label">emailAddress</label>
+      <div class="col-lg-4">
+        <input type="email" class="form-control" id="inputUserame" placeholder="emailAddress"required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputEmail" class="col-lg-2 control-label">Confirm emailAddress</label>
+      <div class="col-lg-4">
+        <input type="email" class="form-control" id="inputPassword" placeholder="Confirm emailAddress"required>
+      </div>
+    </div>
+    </div>
+	<button type="submit" class="btn btn-success" style="margin-left:2em">Submit
+	</button>
+  </fieldset>
+</form>
+</div>
+</div>
+	
+		
+	<div class="container">
 	<hr>
 	<footer>
         <p>&copy; Sanguine 2015</p>
@@ -42,6 +93,5 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="../../dist/js/bootstrap.min.js"></script>
-	</body>
+  </body>
 </html>
-	
