@@ -124,7 +124,7 @@
       <label for="inputStreetAddress2" class="col-lg-2 control-label">Account Type</label>
       <div class="col-lg-4">
         <input type="radio" class="" name="inputAccountType" required value="Donor"> <?php if (isset($inputAccountType) && $name=="Donor") int typeId = 1;?> Donor
-		<input type="radio" class="" id="inputAccountType" required value="Blood Bank"> <?php if (isset($inputAccountType) && $name=="Blood Bank") int typeId = 2;?> Blood Bank
+		<input type="radio" class="" name="inputAccountType" required value="Blood Bank"> <?php if (isset($inputAccountType) && $name=="Blood Bank") int typeId = 2;?> Blood Bank
 		<?php echo $inputAccountType; ?>
 	  </div>
     </div>
