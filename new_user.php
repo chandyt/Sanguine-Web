@@ -60,7 +60,7 @@
 <div class="btn-group btn-group-justified">
   <a class="btn btn-default" href="user_login.html">Home</a>
   <a class="btn btn-default" href="new_user.html">Register</a>
-  <a class="btn btn-default" href="#">Send Blood Request</a>
+  <a class="btn btn-default" href="maps.php">Send Blood Request</a>
   <a class="btn btn-default" href="#">About Us</a>
 </div>
 	
