@@ -59,7 +59,7 @@
 	
 <div class="btn-group btn-group-justified">
   <a class="btn btn-default" href="user_login.html">Home</a>
-  <a class="btn btn-default" href="new_user.html">Register</a>
+  <a class="btn btn-default" href="new_user.php">Register</a>
   <a class="btn btn-default" href="maps.php">Send Blood Request</a>
   <a class="btn btn-default" href="#">About Us</a>
 </div>
@@ -115,9 +115,18 @@
     </div>
     <div class="form-group">
       <label for="inputStreetAddress2" class="col-lg-2 control-label">Line 2</label>
+	  
       <div class="col-lg-4">
         <input type="text" class="form-control" id="inputStreetAddress2" required>
       </div>
+    </div>
+	<div class="form-group">
+      <label for="inputStreetAddress2" class="col-lg-2 control-label">Account Type</label>
+      <div class="col-lg-4">
+        <input type="radio" class="" name="inputAccountType" required value="Donor"> <?php if (isset($inputAccountType) && $name=="Donor") int typeId = 1;?> Donor
+		<input type="radio" class="" id="inputAccountType" required value="Blood Bank"> <?php if (isset($inputAccountType) && $name=="Blood Bank") int typeId = 2;?> Blood Bank
+		<?php echo $inputAccountType; ?>
+	  </div>
     </div>
 	</div>
 	<button type="submit" class="btn btn-success" style="margin-left:2em">Register</button>
