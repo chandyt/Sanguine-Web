@@ -176,7 +176,7 @@ function checkPassword(theForm)
 			</div>	  
 
 
-		<input type="submit" class="btn btn-success" style="margin-left:2em" " value="Register"/>
+		<input type="submit" class="btn btn-success" style="margin-left:2em"  value="Register">
 	  </fieldset>
 	</div>
 	</fieldset> 
