@@ -3,7 +3,7 @@
 
 if( $_POST )
 {
-	echo $_POST['rdoAccountType'];
+	//echo $_POST['rdoAccountType'];
   $users_email = $_POST['Email'];
   $users_address1 = $_POST['Address1']  ;
   $users_address2 = $_POST['Address2']  ;
