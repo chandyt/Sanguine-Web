@@ -1,3 +1,9 @@
+<?php
+
+ $xdata=$_REQUEST['data']
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,8 +37,9 @@
 
 	<script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
 	<script>
-
-
+		 var xdata = <?php echo json_encode($xdata); ?>;
+		var jsonData  = JSON.parse(xdata);
+			
 		var map = L.map('map').setView([29.55, -82.44], 13);
 
 		L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IjZjNmRjNzk3ZmE2MTcwOTEwMGY0MzU3YjUzOWFmNWZhIn0.Y8bhBaUMqFiPrDRW9hieoQ', {
@@ -42,15 +49,13 @@
 			id: 'mapbox.streets'
 		}).addTo(map);
 
-
-		L.marker([29.55, -82.44]).addTo(map)
-			.bindPopup("<b>Timmy Chandy</b><br />Blood Type:AB+ <br />Verified").openPopup();
+		//Parson JSON Data and create markers based on JSOn Data
+		for (var i = 0; i < jsonData.length; i++) {
+			var donors = jsonData[i];
+			L.marker([donors.Latitude, donors.Longitude]).addTo(map)
+			.bindPopup("<b>" + donors.Name + "</b><br />Blood Type: " + donors.BloodType +" <br />Verified:"+ donors.Verified).openPopup();
+		}
 		
-		L.marker([29.58, -82.44]).addTo(map)
-			.bindPopup("<b>John Doe</b><br />Blood Type:A+ <br />Not Verified").openPopup();
-			
-		L.marker([29.58, -82.34]).addTo(map)
-			.bindPopup("<b>Jane Doe</b><br />Blood Type:O- <br />Not Verified").openPopup();
 
 		function onMapClick(e) {
 			popup
