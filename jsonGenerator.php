@@ -6,21 +6,21 @@
     'Latitude' => '29.55',
 	'Longitude' => '-82.33',
 	'Verified'=>'yes',
-	'BloodType'=>'AB+',
+	'BloodType'=>'ABp',
 	'Username'=>'doe'),
 	array  (
     'Name' => 'Jane Doe',
     'Latitude' => '29.65',
 	'Longitude' => '-82.33',
 	'Verified'=>'yes',
-	'BloodType'=>'A+',
+	'BloodType'=>'Ap',
 	'Username'=>'doe'),
 	array  (
     'Name' => 'John Smith',
     'Latitude' => '29.65',
 	'Longitude' => '-82.43',
 	'Verified'=>'yes',
-	'BloodType'=>'O+',
+	'BloodType'=>'On',
 	'Username'=>'doe'),
   );
 
