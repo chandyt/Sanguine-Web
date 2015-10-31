@@ -1,0 +1,133 @@
+DECLARE @SearchStr nvarchar(100)
+02
+	SET @SearchStr = '## YOUR STRING HERE ##'
+03
+	 
+04
+	 
+05
+	    -- Copyright © 2002 Narayana Vyas Kondreddi. All rights reserved.
+06
+	    -- Purpose: To search all columns of all tables for a given search string
+07
+	    -- Written by: Narayana Vyas Kondreddi
+08
+	    -- Site: http://vyaskn.tripod.com
+09
+	    -- Updated and tested by Tim Gaunt
+10
+	    -- http://www.thesitedoctor.co.uk
+11
+	    -- http://blogs.thesitedoctor.co.uk/tim/2010/02/19/Search+Every+Table+And+Field+In+A+SQL+Server+Database+Updated.aspx
+12
+	    -- Tested on: SQL Server 7.0, SQL Server 2000, SQL Server 2005 and SQL Server 2010
+13
+	    -- Date modified: 03rd March 2011 19:00 GMT
+14
+	    CREATE TABLE #Results (ColumnName nvarchar(370), ColumnValue nvarchar(3630))
+15
+	 
+16
+	    SET NOCOUNT ON
+17
+	 
+18
+	    DECLARE @TableName nvarchar(256), @ColumnName nvarchar(128), @SearchStr2 nvarchar(110)
+19
+	    SET  @TableName = ''
+20
+	    SET @SearchStr2 = QUOTENAME('%' + @SearchStr + '%','''')
+21
+	 
+22
+	    WHILE @TableName IS NOT NULL
+23
+	     
+24
+	    BEGIN
+25
+	        SET @ColumnName = ''
+26
+	        SET @TableName = 
+27
+	        (
+28
+	            SELECT MIN(QUOTENAME(TABLE_SCHEMA) + '.' + QUOTENAME(TABLE_NAME))
+29
+	            FROM     INFORMATION_SCHEMA.TABLES
+30
+	            WHERE         TABLE_TYPE = 'BASE TABLE'
+31
+	                AND    QUOTENAME(TABLE_SCHEMA) + '.' + QUOTENAME(TABLE_NAME) > @TableName
+32
+	                AND    OBJECTPROPERTY(
+33
+	                        OBJECT_ID(
+34
+	                            QUOTENAME(TABLE_SCHEMA) + '.' + QUOTENAME(TABLE_NAME)
+35
+	                             ), 'IsMSShipped'
+36
+	                               ) = 0
+37
+	        )
+38
+	 
+39
+	        WHILE (@TableName IS NOT NULL) AND (@ColumnName IS NOT NULL)
+40
+	             
+41
+	        BEGIN
+42
+	            SET @ColumnName =
+43
+	            (
+44
+	                SELECT MIN(QUOTENAME(COLUMN_NAME))
+45
+	                FROM     INFORMATION_SCHEMA.COLUMNS
+46
+	                WHERE         TABLE_SCHEMA    = PARSENAME(@TableName, 2)
+47
+	                    AND    TABLE_NAME    = PARSENAME(@TableName, 1)
+48
+	                    AND    DATA_TYPE IN ('char', 'varchar', 'nchar', 'nvarchar', 'int', 'decimal')
+49
+	                    AND    QUOTENAME(COLUMN_NAME) > @ColumnName
+50
+	            )
+51
+	     
+52
+	            IF @ColumnName IS NOT NULL
+53
+	             
+54
+	            BEGIN
+55
+	                INSERT INTO #Results
+56
+	                EXEC
+57
+	                (
+58
+	                    'SELECT ''' + @TableName + '.' + @ColumnName + ''', LEFT(' + @ColumnName + ', 3630) FROM ' + @TableName + ' (NOLOCK) ' +
+59
+	                    ' WHERE ' + @ColumnName + ' LIKE ' + @SearchStr2
+60
+	                )
+61
+	            END
+62
+	        END   
+63
+	    END
+64
+	 
+65
+	    SELECT ColumnName, ColumnValue FROM #Results
+66
+	 
+67
+	DROP TABLE #Results
