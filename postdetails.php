@@ -1,6 +1,5 @@
 <?php
  include('dbconnect.php');
-
 if( $_POST )
 {
 	//echo $_POST['rdoAccountType'];
@@ -23,7 +22,6 @@ if( $_POST )
 	$users_Longitude=$_POST['Longitude'];
   }
   $users_LastUpdatedOn= date('m/d/Y h:i:s a', time());
-
 	$query1="INSERT INTO [User] (UserName,Password,UserTypeId) VALUES (?,?,?)";
     $param1= array($users_UserName,$users_password,$users_type);
 	//echo $query1;
