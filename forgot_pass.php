@@ -71,9 +71,9 @@
 	
 	<div class="row">
 	<div class="col-lg-12">
-	<form class="form-horizontal" action="user_login.html" method="post" onsubmit="return checkEmail()">
+	<form class="form-horizontal" action="forgotpassword1.php" method="post" onsubmit="return checkEmail()">
   <fieldset>
-  <div class = "well col-lg-12">
+    <div class = "well col-lg-12">
     <legend style="padding-left:80px">Enter your email address</legend>
     <div class="form-group">
       <label for="inputEmail1" class="col-lg-2 control-label">emailAddress</label>
@@ -84,28 +84,28 @@
     <div class="form-group">
       <label for="inputEmail2" class="col-lg-2 control-label">Confirm emailAddress</label>
       <div class="col-lg-4">
-        <input type="email" class="form-control" id="inputEmail2" placeholder="Confirm emailAddress"required>
+        <input type="email" class="form-control" id="inputEmail2" name= "email" placeholder="Confirm emailAddress"required>
       </div>
     </div>
     </div>
-	<button type="submit" class="btn btn-success" style="margin-left:2em">Submit
-	</button>
+	<button type="submit" class="btn btn-success" style="margin-left:2em">Submit</button>
 
-  
-      </fieldset>
+        </fieldset>
 </form>
 </div>
 </div>
 	
-		
-	<div class="container">
+		<div class="container">
 	<hr>
 	<footer>
         <p>&copy; Sanguine 2015</p>
       </footer>
     </div> <!-- /container -->
 	
+   <?php 
+   //header('Location: user_login.html');
 
+   ?>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
