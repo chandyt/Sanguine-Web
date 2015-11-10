@@ -18,15 +18,63 @@
 
   <! Navigation bar -->
 
-               <h3>Search  Donors</h3> 
-     <p> search either by username or phone number <br/></p> 
-      <form  method="post" action="search.php?go"  id="searchform"> 
-          <div class = "form-group"  >
-        <input  type="text" required name="searchId" value=" "> 
-        <input  type="submit" name="submit" value="Search"> 
-        </div>
-      </form>  
+               <!--h3>Search  Donors</h3--> 
 
-        
+   <!--form class="form-control"  role="search" id='searchtable' action='search.php?go'>
+    
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Username OR Phonenumber">
+        <input type='submit' name ='searchId' value ='search'>
+    </div>
+    </form>
+
+
+
+
+   <!--form class="form-search" method="post" id="searchfrom" action="search.php?go">
+    <div class=" ">
+        <input type="text" class="input-medium search-query" name="searchId" placeholder="Username" value="">
+        <button type="submit" name="submit" value="Search"> 
+    </div>
+</form-->            
+
+
+
+    
+  <form role = "search" method="post" action= "search.php?go" id="searchform">
+  <div >
+    <label for="searchId"> <h3>Search Donors </h3></label>
+    <span class="input-group-addon" id="sizing-addon3">
+    <input type="text" required class="form-control" name= "userId" placeholder="Username Or Phone number">
+    </span>
+    <input type="submit" class="btn btn-success" style="margin-left: 1em"  value="Search">
+  </div>
+
+  <!--div class=" ">
+    <label for="searchId"> Using Email</label>
+    <input type="text " required class="form-control " id= "emailId" placeholder="Username">
+    <input  type="submit" name="submit" value="Search"> 
+  </div>
+
+  <div class=" ">
+    <label for="searchId"> Using Bloodgroup</label>
+    <input type="text " required class="form-control " id= "bloodId" placeholder="Username">
+    <input  type="submit" name="submit" value="Search"> 
+  </div>
+
+  </form-->
+
+  <!--form class="form-control" method="post" action="search.php?go"  id="searchform" >
+  <div class="form-horizontol">
+    <label for="userName"> UserName</label>
+    <input type="text" required class="form-group" name="userId" placeholder="username">
+    <input  type="submit" name="submit" value="Search">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail2">Email</label>
+    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
+  </div>
+  </form-->
+
 </body>
-  
+  </html>
