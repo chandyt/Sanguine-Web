@@ -84,12 +84,12 @@ function checkPassword(theForm)
 	
 	<!-- Buttons! -->
 	
-<div class="btn-group btn-group-justified">
+<!--<div class="btn-group btn-group-justified">
   <a class="btn btn-default" href="user_login.html">Home</a>
   <a class="btn btn-default" href="new_user.php">Register</a>
   <a class="btn btn-default" href="maps.php">Send Blood Request</a>
   <a class="btn btn-default" href="#">About Us</a>
-</div>
+</div>-->
 	
 	<div class="row">
 	<div class="col-lg-12">
