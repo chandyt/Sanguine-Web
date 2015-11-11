@@ -39,15 +39,12 @@ else {
 function isCorrectLogin($username, $password){
 	global $dbName;
 	global $dbPass;
-	if ($username == $dbName){
-		if ($password == $dbPass){
-			return true;
-		}
-	else {	
+	if ($username == $dbName && $password == $dbPass)
+		return true;
+	else 	
 		return false;
-		}
+		
     }
-}
 
 
 ?>
