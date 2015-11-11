@@ -43,7 +43,7 @@ function checkPassword(theForm)
 </script>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
+      <div class="container" style="margin-left:0; padding-left:0;">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -51,22 +51,15 @@ function checkPassword(theForm)
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.html"></a>
+          <a class="navbar-brand" href="home.html"></a>
         </div>
+
         <div class="navbar-collapse collapse">
-          <div class="navbar-form navbar-right" role="form">
-		   Welcome John Doe
-		  </div>
-          <!--  <div class="form-group">
-              <input type="text" placeholder="Username" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </form>-->
-		 
-        </div><!--/.navbar-collapse -->
+          <a href="home.html">
+            <button type="submit" class="btn btn-succes" style="background-image: linear-gradient(#78cc78, #62c462 60%, #53be53); margin-top:5px;" >Home</button>
+            </a>
+        </div>
+
       </div>
     </div>
 	

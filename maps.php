@@ -1,8 +1,8 @@
-<?php
+<!--<?php
 
  $xdata=$_REQUEST['data']
 
-?>
+?>-->
 
 <!DOCTYPE html>
 <html>
@@ -16,6 +16,12 @@
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
+	
+        <div class="navbar-collapse collapse">
+          <a href="home.html">
+            <button type="submit" class="btn btn-succes" style="background-image: linear-gradient(#78cc78, #62c462 60%, #53be53); margin-top:5px;" >Home</button>
+            </a>
+        </div>
 	<p>
 
 	Filter By Blood Type
