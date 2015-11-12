@@ -27,8 +27,9 @@ $query1 = "SELECT * FROM [User] WHERE UserName = '$Username'";
 
 if (isCorrectLogin($Username, $Password))	{
 	echo "welcome to sanguine.".$Username;
-
-}
+		$_SESSION['CurrentUser'] = $Username;
+		include "maps.php";
+	}
 else {
 	echo "wrong credentials.";
 
@@ -45,6 +46,5 @@ function isCorrectLogin($username, $password){
 		return false;
 		
     }
-
 
 ?>
