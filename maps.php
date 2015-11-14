@@ -23,6 +23,7 @@
             </a>
         </div>
 	<p>
+<div style="color:#FFFFFF; width:5000px">
 
 	Filter By Blood Type
 		<select id="cmbBloodType" onchange="markerFilter()">
@@ -37,7 +38,23 @@
 		  <option value="On">O-</option>
 		  
 		</select>
-
+	
+		<p style="padding-left:50px; display:inline">
+		Filter By Radius
+		<select id="cmbZoom" onchange="changeZoom()">
+		  <option value="50">50</option>
+		  <option value="25">25</option>
+		  <option value="15">15</option>
+		  <option value="10">10</option>
+		  <option value="5">5</option>
+		  <option value="4">4</option>
+		  <option value="3">3</option>
+		  <option value="2">2</option>
+		  <option value="1">1</option>
+		  
+		</select> Miles
+		</p>
+</div>
 	</p>
 	<div id="map" style="width:1200px; height: 800px"></div>
 
@@ -63,6 +80,44 @@
 			dropMarkers(x);
 		}
 		
+		
+		function changeZoom() {
+			var x = document.getElementById("cmbZoom").value;
+			switch(x) {
+				case "50":
+					map.setZoom(9);
+					break;
+				case "25":
+					map.setZoom(10);
+					break;
+				case "15":
+					map.setZoom(11);
+					break;
+				case "10":
+					map.setZoom(12);
+					break;
+				case "5":
+					map.setZoom(13);
+					break;
+				case "4":
+					map.setZoom(14);
+					break;
+				case "3":
+					map.setZoom(15);
+					break;
+				case "2":
+					map.setZoom(16);
+					break;					
+					
+				case "1":
+					map.setZoom(17);
+					break;		
+
+				default:
+					map.setZoom(18);
+			}
+			
+		}
 		
 		function dropMarkers(filter) {
 			var xdata = <?php echo json_encode($xdata); ?>;
