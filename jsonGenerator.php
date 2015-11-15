@@ -1,5 +1,5 @@
 <?php
-
+session_start();
   $donors =array  (
 	array  (
     'Name' => 'John Doe',
@@ -25,8 +25,8 @@
   );
 
 $data_string = json_encode  ($donors);
-
-header("Location: http://localhost/Sanguine-Web/maps.php?data=".$data_string);
+$_SESSION["data"] =$data_string;
+header("Location: http://localhost/Sanguine-Web/maps.php");
 
 
 

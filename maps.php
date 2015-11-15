@@ -1,8 +1,7 @@
-<!--<?php
-
- $xdata=$_REQUEST['data']
-
-?>-->
+<?php
+session_start();
+ $xdata=$_SESSION["data"];
+?>
 
 <!DOCTYPE html>
 <html>
@@ -26,7 +25,7 @@
 </head>
 
 <body>
-	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" width="100%">
       <div class="container" style="margin-left:0;">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -36,14 +35,15 @@
             <span class="icon-bar"></span>
 
         </div>
-
-        <div class="navbar-collapse collapse">
-          <a href="user_login.html">
-            <button type="submit" class="btn btn-succes" style="background-image: linear-gradient(#78cc78, #62c462 60%, #53be53); margin-top:5px;" >Home</button>
+      </div>
+        <div   align="right" width="100%" style="padding-right:50px;color:#FFFFFF">
+         Welcome <?php echo $_SESSION["DisplayName"]; ?><br>
+		  <a href="user_login.html">
+            Sign Out
             </a>
         </div>
 
-      </div>
+
     </div>
  	
  	<div style="padding-top:50px;" class="btn-group btn-group-justified">
@@ -51,11 +51,11 @@
 		  <a class="btn btn-default" href="search_layout.html">Search</a>
 		  <a class="btn btn-default" href="#">Donation History</a>
 	</div>
-
+<div style="padding-left:50px;">
 <div style="color:#FFFFFF; width:5000px; padding-top:10px;">
 
 	Filter By Blood Type
-		<select id="cmbBloodType" onchange="markerFilter()">
+		<select id="cmbBloodType" onchange="markerFilter()" style="color:#000000">
 		  <option value="All">All</option>
 		  <option value="Ap">A+</option>
 		  <option value="An">A-</option>
@@ -70,7 +70,7 @@
 	
 		<p style="padding-left:50px; display:inline">
 		Filter By Radius
-		<select id="cmbZoom" onchange="changeZoom()">
+		<select id="cmbZoom" onchange="changeZoom()" style="color:#000000">
 		  <option value="50">50</option>
 		  <option value="25">25</option>
 		  <option value="15">15</option>
@@ -84,7 +84,8 @@
 		</select> Miles
 		</p>
 </div>
-	</p>
+	<br/>
+	
 	<div id="map" style="width:1200px; height: 800px"></div>
 
 	<script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
@@ -179,5 +180,7 @@
 		
 
 	</script>
+	
+	</div>
 </body>
 </html>
