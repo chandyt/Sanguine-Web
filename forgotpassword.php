@@ -4,6 +4,7 @@
 	if( $_POST ){
 		$username = $_POST['username'];  
 		$email = $_POST['email'];
+		echo $email;
 		
 		$length = 7;
 		$onetimepassword = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
