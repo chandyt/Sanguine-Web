@@ -52,14 +52,14 @@ function checkPassword(theForm)
             <span class="icon-bar"></span>
           </button>
         </div>
-
-        <div class="navbar-collapse collapse">
+</div>
+        <div align="right" width="100%" style="padding-right:50px;color:#FFFFFF">
           <a href="user_login.html">
-            <button type="submit" class="btn btn-succes" style="background-image: linear-gradient(#78cc78, #62c462 60%, #53be53); margin-top:5px; margin-left:5px;">Home</button>
+            Sign In
             </a>
         </div>
 
-      </div>
+      
     </div>
 	
 	
