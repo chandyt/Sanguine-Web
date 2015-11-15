@@ -14,16 +14,45 @@
 
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+    <title>Sanguine</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
 </head>
+
 <body>
-	
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container" style="margin-left:0;">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+
+        </div>
+
         <div class="navbar-collapse collapse">
           <a href="user_login.html">
             <button type="submit" class="btn btn-succes" style="background-image: linear-gradient(#78cc78, #62c462 60%, #53be53); margin-top:5px;" >Home</button>
             </a>
         </div>
-	<p>
-<div style="color:#FFFFFF; width:5000px">
+
+      </div>
+    </div>
+ 	
+ 	<div style="padding-top:50px;" class="btn-group btn-group-justified">
+		  <a class="btn btn-default" href="maps.php">Send Blood Request</a>
+		  <a class="btn btn-default" href="search_layout.html">Search</a>
+		  <a class="btn btn-default" href="#">Donation History</a>
+	</div>
+
+<div style="color:#FFFFFF; width:5000px; padding-top:10px;">
 
 	Filter By Blood Type
 		<select id="cmbBloodType" onchange="markerFilter()">
