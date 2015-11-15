@@ -32,47 +32,36 @@
 </script>
 
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
+
+	 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container" style="margin-left:0; padding-left:0;">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-
-        </div>
           </button>
-          <a class="navbar-brand" href="index.html"></a>
-      </div>
-    </div>
-	
-	
-	
-
-	
-	 <div class="jumbotron">
-      <div class="container">
-		<div class = "row">
-		<div class="col-md-12">
-		<h1 style = "text-align: center">Welcome to Sanguine</h1>
-		</div>
         </div>
-		</div>
-	  </div>
-    </div>
-	
-<div class="btn-group btn-group-justified">
-  <a class="btn btn-default" href="user_login.html">Home</a>
-  <a class="btn btn-default" href="new_user.php">Register</a>
-  <a class="btn btn-default" href="maps.php">Send Blood Request</a>
-  <a class="btn btn-default" href="#">About Us</a>
 </div>
-	
+        <div align="right" width="100%" style="padding-right:50px;color:#FFFFFF">
+          <a href="user_login.html">
+            Sign In
+            </a>
+        </div>
+
+      
+    </div>
+	<br/><br/>
+	<div height="15px">
+ <h1 style = "text-align: center">Reset Password</h1>
+	</div>
 	<div class="row">
+	
 	<div class="col-lg-12">
 	<form class="form-horizontal" action="forgotpassword1.php" method="post" onsubmit="return checkEmail()">
   <fieldset>
+ 
     <div class = "well col-lg-12">
     <legend style="padding-left:80px">Enter your email address</legend>
     <div class="form-group">

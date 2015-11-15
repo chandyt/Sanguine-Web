@@ -48,7 +48,7 @@ session_start();
  	
  	<div style="padding-top:50px;" class="btn-group btn-group-justified">
 		  <a class="btn btn-default" href="maps.php">Send Blood Request</a>
-		  <a class="btn btn-default" href="search_layout.html">Search</a>
+		  <a class="btn btn-default" href="search_layout.php">Search</a>
 		  <a class="btn btn-default" href="#">Donation History</a>
 	</div>
 <div style="padding-left:50px;">

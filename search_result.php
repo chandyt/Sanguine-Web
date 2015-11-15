@@ -13,12 +13,39 @@
 
 	</head>
 <body>
-<!-- Navigation Bar -->
+
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" width="100%">
+      <div class="container" style="margin-left:0;">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+
+        </div>
+      </div>
+        <div   align="right" width="100%" style="padding-right:50px;color:#FFFFFF">
+         Welcome <b> <?php echo $_SESSION["DisplayName"]; ?></b><br>
+		  <a href="user_login.html">
+            Sign Out
+            </a>
+        </div>
+
+
+    </div>
+
+ 	<div style="padding-top:50px;" class="btn-group btn-group-justified">
+		  <a class="btn btn-default" href="maps.php">Send Blood Request</a>
+		  <a class="btn btn-default" href="search_layout.php">Search</a>
+		  <a class="btn btn-default" href="#">Donation History</a>
+	</div>
+
 
 <?php
 
 if ( isset($_SESSION['UserName'],$_SESSION['Name'],$_SESSION['PhoneNumber'],$_SESSION['Email'],$_SESSION['Type'])){
-	echo "Welcome to sanguine".$_SESSION['Name']."<br/>";
+	
 	//include"edit_field.html";
 
     $username= $_SESSION['UserName'] ;

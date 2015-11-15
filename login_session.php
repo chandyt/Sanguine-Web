@@ -19,8 +19,6 @@ if ( $_POST){
 			$obj = sqlsrv_fetch( $sql );
 			$dbName = sqlsrv_get_field($sql, 0);
 			$dbPass = sqlsrv_get_field($sql, 1);
-			$dbType = sqlsrv_get_field($sql, 2);
-			$_SESSION['UserType'] = $dbType;
 			
 			//$query2 = "UPDATE [User] SET Password = '$newpassword' WHERE UserName = '$username'";
 			//$param2 = array($newpassword);
@@ -29,24 +27,17 @@ if ( $_POST){
 
 if (isCorrectLogin($Username, $Password))	{
 	echo "welcome to sanguine.".$Username;
-<<<<<<< HEAD
-		$_SESSION['CurrentUser'] = $Username;
-		//include "maps.php";
-	}
-=======
+	$_SESSION["UserName"]=$Username;
 	$_SESSION["isAuthenticated"] = true;
 	$_SESSION["DisplayName"] = sqlsrv_get_field($sql, 3);
 	 header("Location: http://localhost/Sanguine-Web/jsonGenerator.php");
 
 }
->>>>>>> 02894defc9d38dc0d717380eebf1e8f8ead3c79e
 else {
 	echo "wrong credentials.";
 	$_SESSION["isAuthenticated"] = false;
 
 	}
-
-	echo "input the username and password"
 }
 
 
@@ -59,5 +50,6 @@ function isCorrectLogin($username, $password){
 		return false;
 		
     }
+
 
 ?>
