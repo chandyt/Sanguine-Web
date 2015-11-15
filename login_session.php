@@ -19,6 +19,8 @@ $query1 = "SELECT * FROM [User] WHERE UserName = '$Username'";
 			$obj = sqlsrv_fetch( $sql );
 			$dbName = sqlsrv_get_field($sql, 0);
 			$dbPass = sqlsrv_get_field($sql, 1);
+			$dbType = sqlsrv_get_field($sql, 2);
+			$_SESSION['UserType'] = $dbType;
 			
 			//$query2 = "UPDATE [User] SET Password = '$newpassword' WHERE UserName = '$username'";
 			//$param2 = array($newpassword);
@@ -28,12 +30,14 @@ $query1 = "SELECT * FROM [User] WHERE UserName = '$Username'";
 if (isCorrectLogin($Username, $Password))	{
 	echo "welcome to sanguine.".$Username;
 		$_SESSION['CurrentUser'] = $Username;
-		include "maps.php";
+		//include "maps.php";
 	}
 else {
 	echo "wrong credentials.";
 
 	}
+
+	echo "input the username and password"
 }
 
 
