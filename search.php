@@ -1,4 +1,7 @@
-      
+<?php
+ session_start();
+?> 
+
 <?php 
 
 include('dbconnect.php');
@@ -10,10 +13,15 @@ if($_POST)
 
 	//$sql = "SElECT UserName, PhoneNumber, Name , Email , Type FROM [UserDetail]  INNER JOIN [BloodType] ON Username"
 
-	$sql = "SELECT * FROM [UserDetail] WHERE UserName = '$searchId' OR PhoneNumber = '$searchId'";
+	//$sql = "SELECT * FROM [UserDetail] WHERE UserName = '$searchId' OR PhoneNumber = '$searchId'";
 
 	      /*'$searchId' or PhoneNumber = '$searchId' " 
        		or Username = ? "*/
+
+     $sql = "SELECT * FROM  [User] U 
+  			Left Join UserDetail UD ON  U.UserName= UD.UserName
+  			Left Join BloodType BT  ON UD.UserName=BT.UserName
+  			WHERE  U.UserTypeId=1  AND ( UD.UserName = '$searchId' OR UD.PhoneNumber = '$searchId') ";
 
         //$params = array($searchId);
         
@@ -32,14 +40,19 @@ if($_POST)
    				//echo $row_count;
 
 while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
-	echo $row['Name'].", ".$row['PhoneNumber'].",".$row['UserName'].",".$row['Email']." <br />";
-	
+	echo $row['Name'].", ".$row['PhoneNumber'].",".$row['UserName'].",".$row['Email']."," .$row['Type']." <br />";
+	$_SESSION['UserName'] = $row['UserName'];
+	$_SESSION['Name'] = $row['Name'];
+	$_SESSION['PhoneNumber'] = $row['PhoneNumber'];
+	$_SESSION['Email'] = $row['Email'];
+	$_SESSION['Type'] = $row['Type'];
+	include "search_result.php";
 	}
 
 
 //header('Location: search_result.html');
 
-sqlsrv_free_stmt( $stmt);    
+sqlsrv_free_stmt( $stmt); 
 
 sqlsrv_close( $conn);
  

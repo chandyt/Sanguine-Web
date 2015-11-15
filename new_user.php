@@ -51,12 +51,11 @@ function checkPassword(theForm)
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="home.html"></a>
         </div>
 
         <div class="navbar-collapse collapse">
-          <a href="home.html">
-            <button type="submit" class="btn btn-succes" style="background-image: linear-gradient(#78cc78, #62c462 60%, #53be53); margin-top:5px;" >Home</button>
+          <a href="user_login.html">
+            <button type="submit" class="btn btn-succes" style="background-image: linear-gradient(#78cc78, #62c462 60%, #53be53); margin-top:5px; margin-left:5px;">Home</button>
             </a>
         </div>
 

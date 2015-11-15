@@ -1,8 +1,7 @@
-<!--<?php
-
- $xdata=$_REQUEST['data']
-
-?>-->
+<?php
+session_start();
+ $xdata=$_SESSION["data"];
+?>
 
 <!DOCTYPE html>
 <html>
@@ -14,18 +13,49 @@
 
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+    <title>Sanguine</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
 </head>
+
 <body>
-	
-        <div class="navbar-collapse collapse">
-          <a href="home.html">
-            <button type="submit" class="btn btn-succes" style="background-image: linear-gradient(#78cc78, #62c462 60%, #53be53); margin-top:5px;" >Home</button>
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" width="100%">
+      <div class="container" style="margin-left:0;">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+
+        </div>
+      </div>
+        <div   align="right" width="100%" style="padding-right:50px;color:#FFFFFF">
+         Welcome <?php echo $_SESSION["DisplayName"]; ?><br>
+		  <a href="user_login.html">
+            Sign Out
             </a>
         </div>
-	<p>
+
+
+    </div>
+ 	
+ 	<div style="padding-top:50px;" class="btn-group btn-group-justified">
+		  <a class="btn btn-default" href="maps.php">Send Blood Request</a>
+		  <a class="btn btn-default" href="search_layout.html">Search</a>
+		  <a class="btn btn-default" href="#">Donation History</a>
+	</div>
+<div style="padding-left:50px;">
+<div style="color:#FFFFFF; width:5000px; padding-top:10px;">
 
 	Filter By Blood Type
-		<select id="cmbBloodType" onchange="markerFilter()">
+		<select id="cmbBloodType" onchange="markerFilter()" style="color:#000000">
 		  <option value="All">All</option>
 		  <option value="Ap">A+</option>
 		  <option value="An">A-</option>
@@ -37,8 +67,25 @@
 		  <option value="On">O-</option>
 		  
 		</select>
-
-	</p>
+	
+		<p style="padding-left:50px; display:inline">
+		Filter By Radius
+		<select id="cmbZoom" onchange="changeZoom()" style="color:#000000">
+		  <option value="50">50</option>
+		  <option value="25">25</option>
+		  <option value="15">15</option>
+		  <option value="10">10</option>
+		  <option value="5">5</option>
+		  <option value="4">4</option>
+		  <option value="3">3</option>
+		  <option value="2">2</option>
+		  <option value="1">1</option>
+		  
+		</select> Miles
+		</p>
+</div>
+	<br/>
+	
 	<div id="map" style="width:1200px; height: 800px"></div>
 
 	<script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
@@ -63,6 +110,44 @@
 			dropMarkers(x);
 		}
 		
+		
+		function changeZoom() {
+			var x = document.getElementById("cmbZoom").value;
+			switch(x) {
+				case "50":
+					map.setZoom(9);
+					break;
+				case "25":
+					map.setZoom(10);
+					break;
+				case "15":
+					map.setZoom(11);
+					break;
+				case "10":
+					map.setZoom(12);
+					break;
+				case "5":
+					map.setZoom(13);
+					break;
+				case "4":
+					map.setZoom(14);
+					break;
+				case "3":
+					map.setZoom(15);
+					break;
+				case "2":
+					map.setZoom(16);
+					break;					
+					
+				case "1":
+					map.setZoom(17);
+					break;		
+
+				default:
+					map.setZoom(18);
+			}
+			
+		}
 		
 		function dropMarkers(filter) {
 			var xdata = <?php echo json_encode($xdata); ?>;
@@ -95,5 +180,7 @@
 		
 
 	</script>
+	
+	</div>
 </body>
 </html>

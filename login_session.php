@@ -9,8 +9,8 @@ if ( $_POST){
 	$Username = $_POST['Username'];
 	$Password = $_POST['Password'];
 
-$query1 = "SELECT * FROM [User] WHERE UserName = '$Username'";
-		$sql = sqlsrv_query($conn, $query1);
+	$query1 = "SELECT * FROM [User] U LEFT JOIN UserDetail UD ON U.UserName=UD.UserName WHERE U.UserName = '$Username'";
+	$sql = sqlsrv_query($conn, $query1);
 
 		if( !$sql ){
 			echo "sql query failed\n";		
@@ -29,11 +29,20 @@ $query1 = "SELECT * FROM [User] WHERE UserName = '$Username'";
 
 if (isCorrectLogin($Username, $Password))	{
 	echo "welcome to sanguine.".$Username;
+<<<<<<< HEAD
 		$_SESSION['CurrentUser'] = $Username;
 		//include "maps.php";
 	}
+=======
+	$_SESSION["isAuthenticated"] = true;
+	$_SESSION["DisplayName"] = sqlsrv_get_field($sql, 3);
+	 header("Location: http://localhost/Sanguine-Web/jsonGenerator.php");
+
+}
+>>>>>>> 02894defc9d38dc0d717380eebf1e8f8ead3c79e
 else {
 	echo "wrong credentials.";
+	$_SESSION["isAuthenticated"] = false;
 
 	}
 
