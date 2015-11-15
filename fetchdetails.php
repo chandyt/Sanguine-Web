@@ -1,17 +1,19 @@
 <?php
+	
 	include('dbconnect.php');
 	
 	if( $_POST ){
 		$username = $_POST['Username'];  
 		$password = $_POST['Password'];
-			
+		
 		$query1 = "SELECT UserName FROM [User] WHERE Password = '$password'";
 		$sql = sqlsrv_query($conn, $query1);
-
+	
 		if( !$sql ){
 			echo "Incorrect query\n";		
 		}
 		else{
+			
 			$obj = sqlsrv_fetch( $sql );
 			$username1 = sqlsrv_get_field($sql, 0);
 			
@@ -36,5 +38,5 @@
 		//header('Location: new_user.php');
 
 		sqlsrv_close( $conn);
-	}
+	//}
 ?>
