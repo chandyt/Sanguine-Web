@@ -26,7 +26,7 @@ if ( $_POST){
 		}
 
 if (isCorrectLogin($Username, $Password))	{
-	echo "welcome to sanguine.".$Username;
+//echo "welcome to sanguine.".$Username;
 	$_SESSION["UserName"]=$Username;
 	$_SESSION["isAuthenticated"] = true;
 	$_SESSION["DisplayName"] = sqlsrv_get_field($sql, 3);

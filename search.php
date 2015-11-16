@@ -40,7 +40,7 @@ if($_POST)
    				//echo $row_count;
 
 while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
-	echo $row['Name'].", ".$row['PhoneNumber'].",".$row['UserName'].",".$row['Email']."," .$row['Type']." <br />";
+	//echo $row['Name'].", ".$row['PhoneNumber'].",".$row['UserName'].",".$row['Email']."," .$row['Type']." <br />";
 	$_SESSION['UserName'] = $row['UserName'];
 	$_SESSION['Name'] = $row['Name'];
 	$_SESSION['PhoneNumber'] = $row['PhoneNumber'];
