@@ -21,7 +21,7 @@
 	$date = new DateTime('2000-01-01');
 	$result = $date->format('Y-m-d H:i:s');
 	
-	$query1="SELECT [UserName], [Latitude],[Longitude],CONVERT(VARCHAR(10), LastUpdatedOn, 121) as LastUpdatedOn FROM [Location] WHERE Latitude BETWEEN '$lat1' and '$lat2' AND  Longitude BETWEEN '$lon1' and '$lon2'";
+	$query1="SELECT [UserName], [Latitude],[Longitude],CONVERT(VARCHAR(10), LastUpdatedOn, 101) as LastUpdatedOn FROM [Location] WHERE Latitude BETWEEN '$lat1' and '$lat2' AND  Longitude BETWEEN '$lon1' and '$lon2'";
     $param1= array($users_UserName,$users_Latitude1,$users_Longitude1,$date );
 	//$query2="SELECT COUNT(*) (SELECT * FROM [Location] (UserName,Latitude,Longitude,LastUpdatedOn) VALUES (?,?,?,?) WHERE Latitude BETWEEN $lat1 and $lat2 AND WHERE Longitude BETWEEN $lon1 and $lon2) x";
 	
