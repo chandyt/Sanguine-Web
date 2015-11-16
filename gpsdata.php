@@ -60,6 +60,9 @@
     //Replace the '\n's - make it faster - but at the price of bad redability.
     $json_str = str_replace("\n","",$json_str); //Comment this out when you are debugging the script
 	echo $json_str;
+	session_start();
+	$_SESSION["data"] =$json_str;
+header("Location: http://localhost/Sanguine-Web/maps.php");
 	//sqlsrv_close( $conn);
 //}
 ?>
