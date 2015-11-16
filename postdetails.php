@@ -11,6 +11,7 @@ if( $_POST )
   $users_password = $_POST['Password'];
   $users_type = $_POST['rdoAccountType'];
   $users_name = $_POST['Name'];
+  $users_bloodtype = $_POST['bloodType'];
   if ($users_type=="2")
   {
 	$users_Latitude=0;
@@ -54,6 +55,18 @@ if( $_POST )
 				echo "Row insertion failed.\n";
 				die( print_r( sqlsrv_errors(), true));
 			}
+		
+		$query3="INSERT INTO [BloodType] (UserName,Type) VALUES (?,?)";
+				$param3= array($users_UserName,$users_bloodtype);
+				$sql=sqlsrv_query($conn, $query3, $param3);
+				if( !$sql )
+					{
+						echo "Failed\n";
+						
+					}
+	
+			
+			
 	}
 	header('Location: new_user.php');
 	

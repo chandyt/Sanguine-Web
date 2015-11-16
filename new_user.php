@@ -154,15 +154,15 @@ function checkPassword(theForm)
 		  <label for="inputStreetAddress2" class="col-lg-2 control-label">Blood Type</label>
 
 			<select name="bloodType" id="bloodType">
-			  <option value="All">All</option>
-			  <option value="ap">A+</option>
-			  <option value="an">A-</option>
-			  <option value="bp">B+</option>
-			  <option value="bn">B-</option>
-			  <option value="abp">AB+</option>
-			  <option value="abn">AB-</option>
-			  <option value="op">O+</option>
-			  <option value="on">O-</option>
+			  <!--option value="All">All</option-->
+			  <option value="A+">A+</option>
+			  <option value="A-">A-</option>
+			  <option value="B+">B+</option>
+			  <option value="B-">B-</option>
+			  <option value="AB+">AB+</option>
+			  <option value="AB+">AB-</option>
+			  <option value="O+">O+</option>
+			  <option value="O-">O-</option>
 			  
 			</select>
 			</div>	  
