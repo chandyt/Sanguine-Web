@@ -46,6 +46,10 @@ while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
 	$_SESSION['PhoneNumber'] = $row['PhoneNumber'];
 	$_SESSION['Email'] = $row['Email'];
 	$_SESSION['Type'] = $row['Type'];
+	$_SESSION['Address1']   = $row['Address1'];
+	$_SESSION['Address2']   = $row['Address2'];
+	$_SESSION['UserTypeId']   = $row['UserTypeId'];
+
 	include "search_result.php";
 	}
 

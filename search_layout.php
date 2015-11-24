@@ -47,8 +47,8 @@ session_start();
 		  <a class="btn btn-default" href="#">Donation History</a>
 	</div>
 
-   <form class="form-search" method="post" id="searchfrom" action="search.php?go">
-    <div class=" ">
+   <!--form class="form-search" method="post" id="searchfrom" action="search.php?go">
+    <div class=" "-->
 
       
     <form role = "search" method="post" action= "search.php?go" id="searchform">

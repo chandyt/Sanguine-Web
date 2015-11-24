@@ -26,7 +26,7 @@ session_start();
 
 $data_string = json_encode  ($donors);
 $_SESSION["data"] =$data_string;
-header("Location: http://localhost/Sanguine-Web/maps.php");
+header("Location: http://localhost/Sanguine-Web/Sanguine-Web/maps.php");
 
 
 

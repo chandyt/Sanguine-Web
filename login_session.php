@@ -19,7 +19,7 @@ if ( $_POST){
 			$obj = sqlsrv_fetch( $sql );
 			$dbName = sqlsrv_get_field($sql, 0);
 			$dbPass = sqlsrv_get_field($sql, 1);
-			
+			$dbUserType = sqlsrv_get_field($sql, 2);
 			//$query2 = "UPDATE [User] SET Password = '$newpassword' WHERE UserName = '$username'";
 			//$param2 = array($newpassword);
 			//$sql2 = sqlsrv_query($conn, $query2);
@@ -30,7 +30,11 @@ if (isCorrectLogin($Username, $Password))	{
 	$_SESSION["UserName"]=$Username;
 	$_SESSION["isAuthenticated"] = true;
 	$_SESSION["DisplayName"] = sqlsrv_get_field($sql, 3);
-	 header("Location: http://localhost/Sanguine-Web/jsonGenerator.php");
+
+	if($dbUserType==2)
+	 header("Location: http://localhost/Sanguine-Web/Sanguine-Web/jsonGenerator.php");
+	else 
+	 header("Location: http://localhost/Sanguine-Web/Sanguine-Web/donor_page.php");		
 
 }
 else {

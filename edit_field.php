@@ -2,7 +2,7 @@
 session_start();
 ?>
 
-<html lang="en">\
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -46,40 +46,34 @@ function checkPassword(theForm)
 
 </script>
 <body>
-    <!--div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" width="100%">
+      <div class="container" style="margin-left:0;">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="index.html"></a>
+
         </div>
-        <div class="navbar-collapse collapse">
-          <div class="navbar-form navbar-right" role="form">
-       Welcome John Doe
-      </div-->
-          <!--  <div class="form-group">
-              <input type="text" placeholder="Username" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </form>
-     
-        </div></.navbar-collapse >
       </div>
-    </div-->
+        <div   align="right" width="100%" style="padding-right:50px;color:#FFFFFF">
+         Welcome <b> <?php echo $_SESSION["DisplayName"]; ?></b><br>
+      <a href="user_login.html">
+            Sign Out
+            </a>
+        </div>
+
+
+    </div>
+
   
   
-   <div class="jumbotron">
+   <div class="">
       <div class="container">
     <div class = "row">
-    <div class="col-md-12">
-    <h1 style = "text-align: center">Update Your Profile</h1>
+    <div class="col-md-12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <h1 style = "text-align: center">Validate <?php echo $_SESSION["DisplayName"]; ?>'s Profile</h1>
     </div>
         </div>
     </div>
@@ -106,7 +100,7 @@ function checkPassword(theForm)
       <div class="form-group">
       <label for="inputName" class="col-lg-2 control-label">Name</label>
       <div class="col-lg-4">
-      <input type="text" class="form-control" name="Name" id="inputName" required>
+      <input type="text" class="form-control" name="Name" id="inputName" value="<?php echo $_SESSION['Name'] ?>" required>
       </div>
     </div>
     <!--div class="form-group">
@@ -118,10 +112,10 @@ function checkPassword(theForm)
     <div class="form-group">
       <label for="inputEmail" class="col-lg-2 control-label">Email</label>
       <div class="col-lg-4">
-      <input type="text" class="form-control" id="inputEmail" name="Email" placeholder="abc@xyz.com"required>
+      <input type="text" class="form-control" id="inputEmail" name="Email" placeholder="abc@xyz.com" value="<?php echo $_SESSION['Email'] ?>" required>
       </div>
     </div>
-    <div class="form-group">
+    <!--div class="form-group">
       <label for="inputPassword1" class="col-lg-2 control-label">Password</label>
       <div class="col-lg-4">
       <input type="password" class="form-control" id="inputPassword1" name="Password" placeholder="Password" required>
@@ -132,32 +126,32 @@ function checkPassword(theForm)
       <div class="col-lg-4">
       <input type="password" class="form-control" id="inputPassword2" placeholder="Password" required>
       </div>
-    </div>
+    </div-->
     <div class="form-group">
       <label for="inputPhoneNumber" class="col-lg-2 control-label">Phone Number</label>
       <div class="col-lg-4">
-      <input type="text" class="form-control" name="PhoneNumber" id="inputPhoneNumber" required>
+      <input type="text" class="form-control" name="PhoneNumber" id="inputPhoneNumber" value="<?php echo $_SESSION['PhoneNumber'] ?>" required>
       </div>
     </div>
     <div class="form-group">
       <label for="inputStreetAddress1" class="col-lg-2 control-label">Street Address Line 1
       </label>
       <div class="col-lg-4">
-      <input type="text" class="form-control" name="Address1" id="inputStreetAddress1" required>
+      <input type="text" class="form-control" name="Address1" id="inputStreetAddress1" value="<?php echo $_SESSION['Address1'] ?>" required>
       </div>
     </div>
     <div class="form-group">
       <label for="inputStreetAddress2"  class="col-lg-2 control-label">Line 2</label>
       
       <div class="col-lg-4">
-      <input type="text" class="form-control" name="Address2" id="inputStreetAddress2" required>
+      <input type="text" class="form-control" name="Address2" id="inputStreetAddress2" value="<?php echo $_SESSION['Address2'] ?>" required>
       </div>
     </div>
     <div class="form-group">
       <label for="inputStreetAddress2" class="col-lg-2 control-label">Account Type</label>
       <div class="col-lg-4">
-      <input type="radio" class="" name="rdoAccountType" required value="1" onchange="handleRadioChanged(this)"> Donor
-      <input type="radio" class="" name="rdoAccountType" required value="2" onchange="handleRadioChanged(this)" checked> Blood Bank
+      <input type="radio" class="" name="rdoAccountType" required value='1' onchange="handleRadioChanged(this)"> Donor
+      <input type="radio" class="" name="rdoAccountType" required value='2' onchange="handleRadioChanged(this)" checked> Blood Bank
       
       </div>
     </div>
@@ -168,14 +162,14 @@ function checkPassword(theForm)
 
       <select name="bloodType" id="bloodType">
         <option value="All">All</option>
-        <option value="ap">A+</option>
-        <option value="an">A-</option>
-        <option value="bp">B+</option>
-        <option value="bn">B-</option>
-        <option value="abp">AB+</option>
-        <option value="abn">AB-</option>
-        <option value="op">O+</option>
-        <option value="on">O-</option>
+        <option value="A+">A+</option>
+        <option value="A-">A-</option>
+        <option value="B+">B+</option>
+        <option value="B-">B-</option>
+        <option value="AB+">AB+</option>
+        <option value="AB-">AB-</option>
+        <option value="O+">O+</option>
+        <option value="O-">O-</option>
         
       </select>
       </div>    
