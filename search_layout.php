@@ -32,7 +32,7 @@ session_start();
       </div>
         <div   align="right" width="100%" style="padding-right:50px;color:#FFFFFF">
          Welcome <b> <?php echo $_SESSION["DisplayName"]; ?></b><br>
-		  <a href="user_login.html">
+		  <a href="signout.php?logout">
             Sign Out
             </a>
         </div>

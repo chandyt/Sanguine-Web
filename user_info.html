@@ -1,0 +1,26 @@
+ <div class="container">      
+  <table class="table table-hover"> 
+    <thead>
+      <tr>
+        <th>UserName</th>
+        <th>Name</th>
+        <th>PhoneNumber</th>
+        <th>Email</th>
+        <th>Blood Group</th>
+        <th>Address </th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><?php echo $UserName ?></td>
+        <td><?php echo $Name ?></td>
+        <td><?php echo $PhoneNumber ?></td>
+        <td><?php echo $Email ?></td>
+        <td><?php echo $Address1.",<br>".$Address2 ?></td>
+        <td><a href="user_infoedit.php"> <button type="button" class="btn btn-default" > Edit Profile </button></a></td>
+    <!--td><a href='#'> Validate </a></td-->
+      </tr>
+      </tbody>
+  </table>
+</div>

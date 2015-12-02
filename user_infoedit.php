@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+
+
 ?>
 
 <html lang="en">
@@ -68,18 +71,16 @@ function checkPassword(theForm)
     </div>
 
   
-  
-   <div class="">
+  <div class="">
       <div class="container">
     <div class = "row">
     <div class="col-md-12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <h1 style = "text-align: center">Validate <?php echo $_SESSION["DisplayName"]; ?>'s Profile</h1>
+    <h1 style = "text-align: center">Edit Your Profile</h1>
     </div>
         </div>
     </div>
     </div>
     </div>
-  
   <!-- Buttons! -->
   
 <!--div class="btn-group btn-group-justified">
@@ -91,7 +92,7 @@ function checkPassword(theForm)
   
   <div class="row">
   <div class="col-lg-12">
-  <form class="form-horizontal" action="update.php?go" method="post" onsubmit="return checkPassword()">
+  <form class="form-horizontal" action="donor_update.php?go" method="post" onsubmit="return checkPassword()">
     <fieldset>
     <div class = "well col-lg-12">
     
@@ -100,7 +101,7 @@ function checkPassword(theForm)
       <div class="form-group">
       <label for="inputName" class="col-lg-2 control-label">Name</label>
       <div class="col-lg-4">
-      <input type="text" class="form-control" name="Name" id="inputName" value="<?php echo $_SESSION['Name'] ?>" required>
+      <input type="text" class="form-control" name="Name" id="inputName" value="<?php echo $_SESSION["DisplayName"] ?>" required>
       </div>
     </div>
     <!--div class="form-group">
@@ -112,10 +113,10 @@ function checkPassword(theForm)
     <div class="form-group">
       <label for="inputEmail" class="col-lg-2 control-label">Email</label>
       <div class="col-lg-4">
-      <input type="text" class="form-control" id="inputEmail" name="Email" placeholder="abc@xyz.com" value="<?php echo $_SESSION['Email'] ?>" required>
+      <input type="text" class="form-control" id="inputEmail" name="Email" placeholder="abc@xyz.com" value="<?php echo $_SESSION['emailaddress'] ?>" required>
       </div>
     </div>
-    <!--div class="form-group">
+    <div class="form-group">
       <label for="inputPassword1" class="col-lg-2 control-label">Password</label>
       <div class="col-lg-4">
       <input type="password" class="form-control" id="inputPassword1" name="Password" placeholder="Password" required>
@@ -126,32 +127,32 @@ function checkPassword(theForm)
       <div class="col-lg-4">
       <input type="password" class="form-control" id="inputPassword2" placeholder="Password" required>
       </div>
-    </div-->
+    </div>
     <div class="form-group">
       <label for="inputPhoneNumber" class="col-lg-2 control-label">Phone Number</label>
       <div class="col-lg-4">
-      <input type="text" class="form-control" name="PhoneNumber" id="inputPhoneNumber" value="<?php echo $_SESSION['PhoneNumber'] ?>" required>
+      <input type="text" class="form-control" name="PhoneNumber" id="inputPhoneNumber" value="<?php echo $_SESSION['phonenumber'] ?>" required>
       </div>
     </div>
     <div class="form-group">
       <label for="inputStreetAddress1" class="col-lg-2 control-label">Street Address Line 1
       </label>
       <div class="col-lg-4">
-      <input type="text" class="form-control" name="Address1" id="inputStreetAddress1" value="<?php echo $_SESSION['Address1'] ?>" required>
+      <input type="text" class="form-control" name="Address1" id="inputStreetAddress1" value="<?php echo $_SESSION['add1'] ?>" required>
       </div>
     </div>
     <div class="form-group">
       <label for="inputStreetAddress2"  class="col-lg-2 control-label">Line 2</label>
       
       <div class="col-lg-4">
-      <input type="text" class="form-control" name="Address2" id="inputStreetAddress2" value="<?php echo $_SESSION['Address2'] ?>" required>
+      <input type="text" class="form-control" name="Address2" id="inputStreetAddress2" value="<?php echo $_SESSION['add2'] ?>" required>
       </div>
     </div>
     <div class="form-group">
       <label for="inputStreetAddress2" class="col-lg-2 control-label">Account Type</label>
       <div class="col-lg-4">
       <input type="radio" class="" name="rdoAccountType" required value='1' onchange="handleRadioChanged(this)"> Donor
-      <input type="radio" class="" name="rdoAccountType" required value='2' onchange="handleRadioChanged(this)" checked> Blood Bank
+      <!--input type="radio" class="" name="rdoAccountType" required value='2' onchange="handleRadioChanged(this)" checked--> 
       
       </div>
     </div>

@@ -38,7 +38,7 @@ session_start();
       </div>
         <div   align="right" width="100%" style="padding-right:50px;color:#FFFFFF">
          Welcome <b> <?php echo $_SESSION["DisplayName"]; ?></b><br>
-		  <a href="user_login.html">
+		  <a href="signout.php?logout">
             Sign Out
             </a>
         </div>
@@ -49,7 +49,7 @@ session_start();
  	<div style="padding-top:50px;" class="btn-group btn-group-justified">
 		  <a class="btn btn-default" href="maps.php">Send Blood Request</a>
 		  <a class="btn btn-default" href="search_layout.php">Search</a>
-		  <a class="btn btn-default" href="search_layout.php">Update Profile</a>
+		  <a class="btn btn-default" href="bloodbank_infoedit.php">Update Profile</a>
 		  <a class="btn btn-default" href="#">Donation History</a>
 	</div>
 <div style="padding-left:50px;">

@@ -20,6 +20,8 @@ if ( $_POST){
 			$dbName = sqlsrv_get_field($sql, 0);
 			$dbPass = sqlsrv_get_field($sql, 1);
 			$dbUserType = sqlsrv_get_field($sql, 2);
+
+
 			//$query2 = "UPDATE [User] SET Password = '$newpassword' WHERE UserName = '$username'";
 			//$param2 = array($newpassword);
 			//$sql2 = sqlsrv_query($conn, $query2);
@@ -30,6 +32,11 @@ if (isCorrectLogin($Username, $Password))	{
 	$_SESSION["UserName"]=$Username;
 	$_SESSION["isAuthenticated"] = true;
 	$_SESSION["DisplayName"] = sqlsrv_get_field($sql, 3);
+	$_SESSION['add1'] = sqlsrv_get_field($sql, 4);
+	$_SESSION['add2'] = sqlsrv_get_field($sql, 5);
+	$_SESSION['phonenumber'] = sqlsrv_get_field($sql, 6);
+	$_SESSION['emailaddress'] = sqlsrv_get_field($sql, 7);
+	
 
 	if($dbUserType==2)
 	 header("Location: http://localhost/Sanguine-Web/Sanguine-Web/jsonGenerator.php");
