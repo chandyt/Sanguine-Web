@@ -1,6 +1,7 @@
 <?php
 session_start();
  $xdata=$_SESSION["data"];
+
 ?>
 
 <!DOCTYPE html>
@@ -36,21 +37,26 @@ session_start();
 
         </div>
       </div>
-        <div   align="right" width="100%" style="padding-right:50px;color:#FFFFFF">
+	  <div   align="Left" width="60%" style="Padding-left:30px; float: left; color:#FFFFFF">
+        <h2>Sanguine</h2><br>
+        </div>
+        <div   align="right" width="100%" style="float: right;padding-right:50px;color:#FFFFFF">
          Welcome <b> <?php echo $_SESSION["DisplayName"]; ?></b><br>
 		  <a href="signout.php?logout">
             Sign Out
             </a>
         </div>
+    </div>
+	<br/><br/>
 
 
     </div>
  	
  	<div style="padding-top:50px;" class="btn-group btn-group-justified">
-		  <a class="btn btn-default" href="maps.php">Send Blood Request</a>
+		  <a class="btn btn-default" href="gpsdata.php">Send Blood Request</a>
 		  <a class="btn btn-default" href="search_layout.php">Search</a>
-		  <a class="btn btn-default" href="bloodbank_infoedit.php">Update Profile</a>
-		  <a class="btn btn-default" href="#">Donation History</a>
+		  <a class="btn btn-default" href="search_layout.php">Update Profile</a>
+		  <a class="btn btn-default" href="DonationHistory.php">Donation History</a>
 	</div>
 <div style="padding-left:50px;">
 <div style="color:#FFFFFF; width:5000px; padding-top:10px;">
@@ -159,13 +165,24 @@ session_start();
 
 				if (filter !='All')
 				{
-					if (donors.BloodType != filter)
+					if (donors.Type != filter)
 						continue;
 				}
-				var bloodTpe=donors.BloodType;
+				var bloodTpe=donors.Type;
 				bloodTpe = bloodTpe.replace('p','+');
 				bloodTpe = bloodTpe.replace('n','-');
-				L.marker([donors.Latitude, donors.Longitude]).bindPopup("<b>" + donors.Name + "</b><br />Blood Type: " + bloodTpe +" <br />Verified:"+ donors.Verified).addTo(donorMarkers);
+				var verified="Yes"
+				if (donors.IsValidated == 0)
+					verified="No"
+				
+				
+				var tmpType=donors.Type;
+				tmpType = bloodTpe.replace('+','p');
+				tmpType = bloodTpe.replace('-','n');
+				L.marker([donors.Latitude, donors.Longitude]).bindPopup("<b>" + donors.Name + "</b><br />Blood Type: " + bloodTpe +" <br />Verified:"+ verified +
+					"<br/> <a href='sendNotification.php?DeviceId=" + donors.DeviceID + "&BloodType=" + tmpType +"'>Send Notification </a>"
+				).addTo(donorMarkers);
+				//L.marker([donors.Latitude, donors.Longitude]).bindPopup("Test").addTo(donorMarkers);
 			}
 			donorMarkers.addTo(map);
 		}

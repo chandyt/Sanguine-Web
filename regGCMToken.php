@@ -16,7 +16,6 @@
 			$query1="INSERT INTO [GCMRegKey] (DeviceId,RegistrationToken,RegisterdOn) VALUES (?,?,?)";
 			$param1= array($DeviceID,$GCMRegToken,$LastUpdatedOn);
 			$sql=sqlsrv_query($conn, $query1, $param1);
-			echo "2";
 		}
 		else{
 			$obj = sqlsrv_fetch( $sql );

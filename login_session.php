@@ -38,10 +38,10 @@ if (isCorrectLogin($Username, $Password))	{
 	$_SESSION['emailaddress'] = sqlsrv_get_field($sql, 7);
 	
 
-	if($dbUserType==2)
-	 header("Location: http://localhost/Sanguine-Web/Sanguine-Web/jsonGenerator.php");
+	if($dbUserType===2)
+	 header("Location: http://localhost/Sanguine-Web/jsonGenerator.php");
 	else 
-	 header("Location: http://localhost/Sanguine-Web/Sanguine-Web/donor_page.php");		
+	 header("Location: http://localhost/Sanguine-Web/donor_page.php");		
 
 }
 else {

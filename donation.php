@@ -1,6 +1,22 @@
 <?php
 session_start();
- $xdata=$_SESSION["data"];
+include('dbconnect.php');
+
+ $username = $_GET['username'];
+  $sql = "SELECT TOP 1 U.UserName as [username], * FROM  [User] U 
+  			Left Join UserDetail UD ON  U.UserName= UD.UserName
+  			Left Join BloodType BT  ON UD.UserName=BT.UserName
+  			WHERE  U.UserTypeId=1  AND ( UD.UserName = '$username') ";
+ $stmt = sqlsrv_query( $conn, $sql);
+ if( $stmt === false)
+{
+     echo "Error in query preparation/execution.\n";
+     die( print_r( sqlsrv_errors(), true));
+}
+ while($row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC))
+ {
+	 $Name= $row['Name'];
+ }
 ?>
 
 <!DOCTYPE html>
@@ -36,24 +52,29 @@ session_start();
 
         </div>
       </div>
-        <div   align="right" width="100%" style="padding-right:50px;color:#FFFFFF">
+	  <div   align="Left" width="60%" style="Padding-left:30px; float: left; color:#FFFFFF">
+        <h2>Sanguine</h2><br>
+        </div>
+        <div   align="right" width="100%" style="float: right;padding-right:50px;color:#FFFFFF">
          Welcome <b> <?php echo $_SESSION["DisplayName"]; ?></b><br>
 		  <a href="signout.php?logout">
             Sign Out
             </a>
         </div>
+    </div>
+	<br/><br/>
 
 
     </div>
 
     <div style="padding-top:50px;" class="btn-group btn-group-justified">
-          <a class="btn btn-default" href="maps.php">Send Blood Request</a>
-          <a class="btn btn-default" href="search_layout.php">Search</a>
-          <a class="btn btn-default" href="bloodbank_infoedit.php">Update Profile</a>
-          <a class="btn btn-default" href="#">Donation History</a>
+		  <a class="btn btn-default" href="gpsdata.php">Send Blood Request</a>
+		  <a class="btn btn-default" href="search_layout.php">Search</a>
+		  <a class="btn btn-default" href="search_layout.php">Update Profile</a>
+		  <a class="btn btn-default" href="DonationHistory.php">Donation History</a>
     </div>
 
-    <form class="form-horizontal" action="postdetails.php" method="post" onsubmit="return checkPassword()">
+    <form class="form-horizontal" action="UpdateDonationHistory.php" method="post" onsubmit="return checkPassword()">
       <fieldset>
       <div class = "well col-lg-12">
       
@@ -61,28 +82,13 @@ session_start();
         <div class="form-group">
           <label for="inputDonorName" class="col-lg-2 control-label">Donor Name</label>
           <div class="col-lg-4">
-            <input type="text" class="form-control" name="DonorName" id="inputDonorName" required>
+            <?php echo $Name ?>
           </div>
         </div>
 
-        <div id="dvBloodType" style="display:none">
-            
-          <label for="inputStreetAddress2" class="col-lg-2 control-label">Blood Type</label>
 
-            <select name="bloodType" id="bloodType">
-              <!--option value="All">All</option-->
-              <option value="A+">A+</option>
-              <option value="A-">A-</option>
-              <option value="B+">B+</option>
-              <option value="B-">B-</option>
-              <option value="AB+">AB+</option>
-              <option value="AB+">AB-</option>
-              <option value="O+">O+</option>
-              <option value="O-">O-</option>
-              
-            </select>
-        </div>
-
+		<input type="hidden" name="UserName" value="<?php echo $username ?>">
+		
         <div class="form-group">
           <label for="inputBP" class="col-lg-2 control-label">Blood Pressure</label>
           <div class="col-lg-4">
@@ -101,8 +107,10 @@ session_start();
             <input type="text" class="form-control" id="inputCholesterol" name="Cholesterol" required>
           </div>
         </div>
-
+	<div class="form-group">
         <input type="submit" class="btn btn-success" style="margin-left:2em"  value="Submit">
+		<input type="submit" class="btn btn-success" style="margin-left:2em"  value="Cancel">
+		</div>
       </fieldset>
     </div>
     </fieldset> 

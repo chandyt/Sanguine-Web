@@ -1,10 +1,12 @@
 <?php
  include('dbconnect.php');
 
+ 
  $DeviceID = $_GET['DeviceId'];
  $BloodType = $_GET['BloodType'];
- //TODO: Change the message Text
- $message=array("messageBody" => "A+ blood needed urgent");
+ echo $BloodType;
+ //TODO: Change the message Text Add location information to message
+ $message=array("messageBody" => $BloodType . "blood needed urgent");
 
   $LastUpdatedOn= date('m/d/Y h:i:s a', time());
   $query1 = "SELECT * FROM [GCMRegKey] WHERE DeviceID = '$DeviceID'";
@@ -49,5 +51,6 @@
    
 
 		sqlsrv_close( $conn);
+		//header("Location: http://localhost/Sanguine-Web/gpsdata.php");
 
 ?>
