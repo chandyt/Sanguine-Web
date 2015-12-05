@@ -73,7 +73,7 @@ session_start();
 <div style="padding-top:50px;" class="btn-group btn-group-justified">
 		  <a class="btn btn-default" href="gpsdata.php">Send Blood Request</a>
 		  <a class="btn btn-default" href="search_layout.php">Search</a>
-		  <a class="btn btn-default" href="search_layout.php">Update Profile</a>
+		  <a class="btn btn-default" href="user_infoedit.php">Update Profile</a>
 		  <a class="btn btn-default" href="DonationHistory.php">Donation History</a>
 	</div>
   

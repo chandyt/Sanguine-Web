@@ -1,6 +1,31 @@
 <?php
 session_start();
 
+ include('dbconnect.php');
+
+ $username = $_SESSION["UserName"];
+ echo $username;
+  $sql = "SELECT TOP 1 U.UserName as [username], * FROM  [User] U 
+  			Left Join UserDetail UD ON  U.UserName= UD.UserName
+  			Left Join BloodType BT  ON UD.UserName=BT.UserName
+  			WHERE  ( UD.UserName = '$username') ";
+ $stmt = sqlsrv_query( $conn, $sql);
+ if( $stmt === false)
+{
+     echo "Error in query preparation/execution.\n";
+     die( print_r( sqlsrv_errors(), true));
+}
+ while($row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC))
+ {
+	 
+	 $Name= $row['Name'];
+	 $Email=  $row['Email'] ;
+	 $PhoneNumber= $row['PhoneNumber'];
+	 $Address1 =$row['Address1'];
+	 $Address2 = $row['Address2'];
+	 $BloodType= $row['Type'];
+	 $UserType = $row['UserTypeId'];
+ }
 
 
 ?>
@@ -22,12 +47,6 @@ session_start();
 
 <script>
 var currentValue = 0;
-function handleRadioChanged(myRadio) {
-    if( myRadio.value=="1")
-    document.getElementById("dvBloodType").style.display = 'block';
-  else
-    document.getElementById("dvBloodType").style.display = 'none';
-}
 
 function checkPassword(theForm) 
 {
@@ -49,7 +68,7 @@ function checkPassword(theForm)
 
 </script>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" width="100%">
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" width="100%">
       <div class="container" style="margin-left:0;">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -60,22 +79,33 @@ function checkPassword(theForm)
 
         </div>
       </div>
-        <div   align="right" width="100%" style="padding-right:50px;color:#FFFFFF">
+	  <div   align="Left" width="60%" style="Padding-left:30px; float: left; color:#FFFFFF">
+        <h2>Sanguine</h2><br>
+        </div>
+        <div   align="right" width="100%" style="float: right;padding-right:50px;color:#FFFFFF">
          Welcome <b> <?php echo $_SESSION["DisplayName"]; ?></b><br>
-      <a href="signout.php?logout">
+		  <a href="signout.php?logout">
             Sign Out
             </a>
         </div>
+    </div>
+	<br/><br/>
 
 
     </div>
-
+ 	
+ 	<div style="padding-top:50px;" class="btn-group btn-group-justified">
+		  <a class="btn btn-default" href="gpsdata.php">Send Blood Request</a>
+		  <a class="btn btn-default" href="search_layout.php">Search</a>
+		  <a class="btn btn-default" href="user_infoedit.php">Update Profile</a>
+		  <a class="btn btn-default" href="DonationHistory.php">Donation History</a>
+	</div>
   
   <div class="">
       <div class="container">
     <div class = "row">
     <div class="col-md-12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <h1 style = "text-align: center">Edit Your Profile</h1>
+    <h1 style = "text-align: center">Update Your Profile</h1>
     </div>
         </div>
     </div>
@@ -83,16 +113,10 @@ function checkPassword(theForm)
     </div>
   <!-- Buttons! -->
   
-<!--div class="btn-group btn-group-justified">
-  <a class="btn btn-default" href="user_login.html">Home</a>
-  <a class="btn btn-default" href="new_user.php">Register</a>
-  <a class="btn btn-default" href="maps.php">Send Blood Request</a>
-  <a class="btn btn-default" href="#">About Us</a>
-</div-->
   
   <div class="row">
   <div class="col-lg-12">
-  <form class="form-horizontal" action="donor_update.php?go" method="post" onsubmit="return checkPassword()">
+  <form class="form-horizontal" action="profile_update.php?go" method="post" onsubmit="return checkPassword()">
     <fieldset>
     <div class = "well col-lg-12">
     
@@ -101,19 +125,13 @@ function checkPassword(theForm)
       <div class="form-group">
       <label for="inputName" class="col-lg-2 control-label">Name</label>
       <div class="col-lg-4">
-      <input type="text" class="form-control" name="Name" id="inputName" value="<?php echo $_SESSION["DisplayName"] ?>" required>
+      <input type="text" class="form-control" name="Name" id="inputName" value="<?php echo $Name ?>" required>
       </div>
     </div>
-    <!--div class="form-group">
-      <label for="inputUsername" class="col-lg-2 control-label">Username</label>
-      <div class="col-lg-4">
-      <input type="text" class="form-control" id="inputUsername" name="Username" placeholder="Username"required>
-      </div-->
-    <!--/div-->
     <div class="form-group">
       <label for="inputEmail" class="col-lg-2 control-label">Email</label>
       <div class="col-lg-4">
-      <input type="text" class="form-control" id="inputEmail" name="Email" placeholder="abc@xyz.com" value="<?php echo $_SESSION['emailaddress'] ?>" required>
+      <input type="text" class="form-control" id="inputEmail" name="Email" placeholder="abc@xyz.com" value="<?php echo $Email ?>" required>
       </div>
     </div>
     <div class="form-group">
@@ -131,50 +149,49 @@ function checkPassword(theForm)
     <div class="form-group">
       <label for="inputPhoneNumber" class="col-lg-2 control-label">Phone Number</label>
       <div class="col-lg-4">
-      <input type="text" class="form-control" name="PhoneNumber" id="inputPhoneNumber" value="<?php echo $_SESSION['phonenumber'] ?>" required>
+      <input type="text" class="form-control" name="PhoneNumber" id="inputPhoneNumber" value="<?php echo $PhoneNumber ?>" required>
       </div>
     </div>
     <div class="form-group">
       <label for="inputStreetAddress1" class="col-lg-2 control-label">Street Address Line 1
       </label>
       <div class="col-lg-4">
-      <input type="text" class="form-control" name="Address1" id="inputStreetAddress1" value="<?php echo $_SESSION['add1'] ?>" required>
+      <input type="text" class="form-control" name="Address1" id="inputStreetAddress1" value="<?php echo $Address1 ?>" required>
       </div>
     </div>
     <div class="form-group">
       <label for="inputStreetAddress2"  class="col-lg-2 control-label">Line 2</label>
       
       <div class="col-lg-4">
-      <input type="text" class="form-control" name="Address2" id="inputStreetAddress2" value="<?php echo $_SESSION['add2'] ?>" required>
+      <input type="text" class="form-control" name="Address2" id="inputStreetAddress2" value="<?php echo $Address2 ?>" required>
       </div>
     </div>
-    <div class="form-group">
-      <label for="inputStreetAddress2" class="col-lg-2 control-label">Account Type</label>
-      <div class="col-lg-4">
-      <input type="radio" class="" name="rdoAccountType" required value='1' onchange="handleRadioChanged(this)"> Donor
-      <!--input type="radio" class="" name="rdoAccountType" required value='2' onchange="handleRadioChanged(this)" checked--> 
+<input type="hidden" name="bloodType" value="None">    
+	<?php if ($UserType===1)
+	{	
+	?>
+	
+    <div id="dvBloodType" >
       
-      </div>
-    </div>
-      
-      <div id="dvBloodType" style="display:none">
-      
-      <label for="inputStreetAddress2" class="col-lg-2 control-label">Blood Type</label>
+    <label for="inputStreetAddress2" class="col-lg-2 control-label">Blood Type</label>
 
-      <select name="bloodType" id="bloodType">
+	<select name="bloodType" id="bloodType">
         <option value="All">All</option>
-        <option value="A+">A+</option>
-        <option value="A-">A-</option>
-        <option value="B+">B+</option>
-        <option value="B-">B-</option>
-        <option value="AB+">AB+</option>
-        <option value="AB-">AB-</option>
-        <option value="O+">O+</option>
-        <option value="O-">O-</option>
+        <option value="A+" <?php if ($BloodType =="A+") echo "Selected" ?>>A+</option>
+        <option value="A-" <?php if ($BloodType =="A-") echo "Selected" ?>>A-</option>
+        <option value="B+" <?php if ($BloodType =="B+") echo "Selected" ?>>B+</option>
+        <option value="B-" <?php if ($BloodType =="B-") echo "Selected" ?>>B-</option>
+        <option value="AB+" <?php if ($BloodType =="AB+") echo "Selected" ?>>AB+</option>
+        <option value="AB-" <?php if ($BloodType =="AB-") echo "Selected" ?>>AB-</option>
+        <option value="O+" <?php if ($BloodType =="O+") echo "Selected" ?>>O+</option>
+        <option value="O-" <?php if ($BloodType =="O-") echo "Selected" ?>>O-</option>
         
       </select>
       </div>    
 
+	<?php 
+	}
+	?>
 
     <input type="submit" class="btn btn-success" style="margin-left:2em"  value="Submit">
     </fieldset>

@@ -55,23 +55,23 @@ session_start();
  	<div style="padding-top:50px;" class="btn-group btn-group-justified">
 		  <a class="btn btn-default" href="gpsdata.php">Send Blood Request</a>
 		  <a class="btn btn-default" href="search_layout.php">Search</a>
-		  <a class="btn btn-default" href="search_layout.php">Update Profile</a>
+		  <a class="btn btn-default" href="user_infoedit.php">Update Profile</a>
 		  <a class="btn btn-default" href="DonationHistory.php">Donation History</a>
 	</div>
-<div style="padding-left:50px;">
-<div style="color:#FFFFFF; width:5000px; padding-top:10px;">
+<div style="padding-left:50px; ">
+<div style="color:#FFFFFF; width:5000px; padding-top:10px;width:1200px">
 
 	Filter By Blood Type
 		<select id="cmbBloodType" onchange="markerFilter()" style="color:#000000">
 		  <option value="All">All</option>
-		  <option value="Ap">A+</option>
-		  <option value="An">A-</option>
-		  <option value="Bp">B+</option>
-		  <option value="Bn">B-</option>
-		  <option value="ABp">AB+</option>
-		  <option value="ABn">AB-</option>
-		  <option value="Op">O+</option>
-		  <option value="On">O-</option>
+		  <option value="A+">A+</option>
+		  <option value="A-">A-</option>
+		  <option value="B+">B+</option>
+		  <option value="B-">B-</option>
+		  <option value="AB+">AB+</option>
+		  <option value="AB-">AB-</option>
+		  <option value="O+">O+</option>
+		  <option value="O-">O-</option>
 		  
 		</select>
 	
@@ -90,7 +90,18 @@ session_start();
 		  
 		</select> Miles
 		</p>
+		<div  style="float: right;">
+		  <form class="form-horizontal" action="sendNotification.php" method="post" >
+			<input type="hidden" name="NotificationType" value="true">
+			<input type="submit" class="btn btn-success" style="margin-left:2em"  value="Send Group Notification">
+			</form>
+			
+		  
+		</div>
 </div>
+		
+
+
 	<br/>
 	
 	<div id="map" style="width:1200px; height: 800px"></div>
