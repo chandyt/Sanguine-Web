@@ -1,7 +1,22 @@
 <?php
 session_start();
+ include('dbconnect.php');
  $xdata=$_SESSION["data"];
-
+ $username = $_SESSION["UserName"];
+  $sql = "SELECT * FROM  Location 
+  			WHERE  UserName = '$username' ";
+ $stmt = sqlsrv_query( $conn, $sql);
+ if( $stmt === false)
+{
+     echo "Error in query preparation/execution.\n";
+     die( print_r( sqlsrv_errors(), true));
+}
+ while($row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC))
+ {
+	 
+	 $Latitude= $row['Latitude'];
+	 $Longitude= $row['Longitude'];
+ }
 ?>
 
 <!DOCTYPE html>
@@ -60,9 +75,10 @@ session_start();
 	</div>
 <div style="padding-left:50px; ">
 <div style="color:#FFFFFF; width:5000px; padding-top:10px;width:1200px">
-
+<form class="form-horizontal" action="sendNotification.php" method="post" >
 	Filter By Blood Type
-		<select id="cmbBloodType" onchange="markerFilter()" style="color:#000000">
+	
+		<select id="cmbBloodType" onchange="markerFilter()" name="BloodType" style="color:#000000">
 		  <option value="All">All</option>
 		  <option value="A+">A+</option>
 		  <option value="A-">A-</option>
@@ -91,7 +107,7 @@ session_start();
 		</select> Miles
 		</p>
 		<div  style="float: right;">
-		  <form class="form-horizontal" action="sendNotification.php" method="post" >
+		  
 			<input type="hidden" name="NotificationType" value="true">
 			<input type="submit" class="btn btn-success" style="margin-left:2em"  value="Send Group Notification">
 			</form>
@@ -110,7 +126,20 @@ session_start();
 	<script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js"></script>
 	<script>
 		
-		var map = L.map('map').setView([29.55, -82.44], 12);
+		var lat = <?php echo ($Latitude); ?>;
+		var longt = <?php echo ($Longitude); ?>;
+		var greenIcon = L.icon({
+			iconUrl: 'http://localhost/Sanguine-Web/homeicon.png',
+			iconSize:     [30, 40], // size of the icon
+			shadowSize:   [50, 64], // size of the shadow
+			iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+			shadowAnchor: [4, 62],  // the same for the shadow
+			popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+			});
+			
+		
+		
+		var map = L.map('map').setView([lat, longt], 13);
 		var donorMarkers = new L.markerClusterGroup();
 			
 		L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IjZjNmRjNzk3ZmE2MTcwOTEwMGY0MzU3YjUzOWFmNWZhIn0.Y8bhBaUMqFiPrDRW9hieoQ', {
@@ -120,6 +149,7 @@ session_start();
 			id: 'mapbox.streets'
 		}).addTo(map);
 		
+		L.marker([lat, longt], {icon: greenIcon}	).addTo(donorMarkers);
 		dropMarkers('All');
 		
 		function markerFilter() {
@@ -128,6 +158,8 @@ session_start();
 			dropMarkers(x);
 		}
 		
+		
+		//L.marker([lat, long], {icon: greenIcon}).addTo(map);
 		
 		function changeZoom() {
 			var x = document.getElementById("cmbZoom").value;
@@ -168,6 +200,8 @@ session_start();
 		}
 		
 		function dropMarkers(filter) {
+
+			
 			var xdata = <?php echo json_encode($xdata); ?>;
 			var jsonData  = JSON.parse(xdata);
 			//Parse JSON Data and create markers based on JSOn Data

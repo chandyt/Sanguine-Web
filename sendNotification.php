@@ -2,9 +2,33 @@
 session_start();
 
  include('dbconnect.php');
-$grpNotification=false;
+ $grpNotification=false;
+ 
+ // Generate Address
+  $username = $_SESSION["UserName"];
+  $sql = "SELECT TOP 1 U.UserName as [username], * FROM  [User] U 
+  			Left Join UserDetail UD ON  U.UserName= UD.UserName
+  			WHERE  ( UD.UserName = '$username') ";
+ $stmt = sqlsrv_query( $conn, $sql);
+ if( $stmt === false)
+{
+     echo "Error in query preparation/execution.\n";
+     die( print_r( sqlsrv_errors(), true));
+}
+ while($row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC))
+ {
+	 
+	 $Name= $row['Name'];
+	 $PhoneNumber= $row['PhoneNumber'];
+	 $Address1 =$row['Address1'];
+	 $Address2 = $row['Address2'];
+ }
+
+ $BloodBankAddress = $Name . "\n" .$Address1. "\n". $Address2. "\n" . $PhoneNumber;
+ 
  if( $_POST ){
 	 $grpNotification=$_POST["NotificationType"];
+	 $BloodType = $_POST['BloodType'];
 	if ($grpNotification)
 	 {
 		 $xdata=$_SESSION["data"];
@@ -14,11 +38,35 @@ $grpNotification=false;
 		foreach ($jsonIterator as $key => $val) {
 			if(is_array($val)) {
 			} else {
+				//echo $key ."-->". $val;
+				//echo $BloodType;
+				$DeviceID="";
 				if ($key==="DeviceID")
 				{
+					//echo $val;
 					$DeviceID=$val;
-					$message=array("messageBody" => "Immediate Requirement of All types of blood");
-					sendMessage($DeviceID,$message);
+					$message=array("messageBody" => "Immediate Requirement for All types of blood. Please Contact: " . $BloodBankAddress);
+					if ($BloodType == 'All')
+					{
+						//echo $DeviceID."   ". "Send Message to All";
+						sendMessage($DeviceID,$message);
+					}
+					
+				}
+				
+				if ($BloodType != 'All')
+				{
+					if ($key==="Type")
+					{
+						If ($BloodType==$val)
+						{
+							//echo $val;
+							//echo $DeviceID."   ". "Send Message to ". $val;
+							$message=array("messageBody" => "Immediate Requirement for All types of blood. Please Contact: " . $BloodBankAddress);	
+							sendMessage($DeviceID,$message);
+						}
+			
+					}
 				}
 			}
 		}
@@ -30,9 +78,8 @@ else
 {
 	 $DeviceID = $_GET['DeviceId'];
 	 $BloodType = $_GET['BloodType'];
-	 //echo $BloodType;
-	 //TODO: Change the message Text Add location information to message
-	 $message=array("messageBody" => $BloodType . "blood needed urgent");
+	 
+	 $message=array("messageBody" => "Your blood type is needed urgently. Please Contact: " . $BloodBankAddress);
 	 sendMessage($DeviceID,$message);
 		  
  }   

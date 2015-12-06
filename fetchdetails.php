@@ -36,7 +36,6 @@
 			}
 		}
 		//header('Location: new_user.php');
-
 		sqlsrv_close( $conn);
-	//}
+	}
 ?>
